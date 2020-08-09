@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static "logsuccess/css/bootstrap.min.css" %}">
+    <script src="{% static "logsuccess/js/jquery.min.js" %}"></script>
+  <script src="{% static "logsuccess/js/bootstrap.min.js" %}"></script>
+<script type="text/javascript" src="{% static "logsuccess/js/1jquery.min.js" %}"></script>
+<script type="text/javascript" src="jquery-1.6.2.min.js"></script>
+
+    <script type="text/javascript" language="JavaScript">
+        function fillcontent(id)
+        {
+
+            var xmlhttp;
+            if (window.XMLHttpRequest)
+            {
+                xmlhttp=new XMLHttpRequest();
+            }
+            else
+            {
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function()
+            {
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                {
+                    document.getElementById("maincontent").innerHTML = xmlhttp.responseText;
+                }
+            }
+            xmlhttp.open("GET", "../logsuccesss?id="+id, true);
+            xmlhttp.send();
+        }
+    </script>
+    <title>Login Success</title>
+</head>
+<style>
+.vertical-menu {
+    width: 200px;
+}
+
+.vertical-menu a {
+    background-color: #eee;
+    color: black;
+    display: block;
+    padding: 12px;
+    text-decoration: none;
+}
+
+.vertical-menu a:hover {
+    background-color: #ccc;
+}
+
+.vertical-menu a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
+<body>
+
+
+<div class="container" style="background-color: #555555">
+ <div class="row">
+     <div class="col-3" style="background-color: #dddddd">
+         <div class="vertical-menu">
+            {% for i in s %}
+            <a href="#{{ i.subname }}" class="active" id="{{ i.subname }}">{{ i.subname }}</a>
+                {% for j in t %}
+                    <ul>
+                    {% if j.subject.subname == i.subname %}
+                        <li style="list-style: none;">
+                        <a href="#" id="{{ j.topicname }}" name="{{ j.topicname }}" onclick="fillcontent({{ forloop.counter }})">
+                            {{ j.topicname }}
+                        </a>
+                        </li>
+                    {% endif %}
+                    </ul>
+                {% endfor %}
+            {% endfor %}
+        </div>
+     </div>
+    <div class="col-lg-9"  style="background-color: #8a6d3b" id="maincontent">
+    --------------
+    </div>
+ </div>
+</div>
+
+<script>
+	//define your time in second
+		var c=600;
+        var t;
+        timedCount();
+
+        function timedCount()
+		{
+
+        	var hours = parseInt( c / 3600 ) % 24;
+        	var minutes = parseInt( c / 60 ) % 60;
+        	var seconds = c % 60;
+
+        	var result = (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds  < 10 ? "0" + seconds : seconds);
+
+
+        	$('#timer').html(result);
+            if(c == 0 )
+			{
+            	//setConfirmUnload(false);
+                //$("#quiz_form").submit();
+				window.location="logout.html";
+			}
+            c = c - 1;
+            t = setTimeout(function()
+			{
+			 timedCount()
+			},
+			1000);
+        }
+	</script>
+
+</body>
+</html>

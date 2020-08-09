@@ -1,0 +1,48 @@
+{% extends 'signup.html' %}
+
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+<!--{% block image %}<img src={% static "login/images/img-01.png" %} alt="IMG">{% endblock %}
+-->
+{% block form_body %}
+
+    <form class="login100-form validate-form" method="post">
+        {% csrf_token %}
+        <span class="login100-form-title">
+            Member Login
+        </span>
+
+        <div class="wrap-input100 validate-input" data-validate = "Name is required: ex@abc.xyz">
+						<input class="input100" type="text" name="username" id="username" placeholder="username">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</span>
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate = "Password is required">
+            <input class="input100" type="password" name="Password" id="Password" placeholder="Password">
+            <span class="focus-input100"></span>
+            <span class="symbol-input100"><i class="fa fa-lock" aria-hidden="true"></i></span>
+        </div>
+
+        <div class="container-login100-form-btn">
+            <button onclick="myFunction()" class="login100-form-btn">Login</button>
+            {% if messages %}
+                 <ul>
+                    {% for message in messages %}
+                        <li class="text text-danger">{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+            {% endif %}
+        </div>
+{% block redirect %}
+        <div class="text-center p-t-136">
+
+        </div>
+{% endblock %}
+				</form>
+{% endblock %}
+

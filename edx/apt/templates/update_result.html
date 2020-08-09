@@ -1,0 +1,62 @@
+{% extends 'footer.html' %}
+{% block content %}
+        <div id="dv">
+            <h3><strong>Exam Result</strong></h3>
+        <form method="POST">
+                      <!-- Heading -->
+                        {% csrf_token %}
+
+                        <div>
+                          <label for="Exam_Name">Exam Name:</label>
+                          <input type="text" id="Exam_Name" placeholder="Enter Exam Name" name="Exam_Name" required>
+                        </div>
+
+                        <div>
+                           <label for="username" >Username:</label>
+                            <select name="username" >
+                                <option selected>Select</option>
+                                {% for up1 in ex1 %}
+                                <option value="{{ up1.user }}">{{ up1.user }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div>
+                          <label for="Subject1">Subject 1:</label>
+                          <input type="number" id="Subject1" placeholder="Enter Marks" name="Subject1" required>
+                        </div>
+                        <div>
+                          <label for="Subject2">Subject 2:</label>
+                          <input type="number" id="Subject2" placeholder="Enter Marks" name="Subject2" required>
+                        </div>
+                        <div>
+                          <label for="Subject3">Subject 3:</label>
+                          <input type="number" id="Subject3" placeholder="Enter Marks" name="Subject3" required>
+                        </div>
+                        <div>
+                          <label for="Subject4">Subject 4:</label>
+                          <input type="number" id="Subject4" placeholder="Enter Marks" name="Subject4">
+                        </div>
+                        <div>
+                          <label for="Subject5">Subject 5:</label>
+                          <input type="number" id="Subject5" placeholder="Enter Marks" name="Subject5" >
+                        </div>
+                        <div>
+                          <label for="Subject6">Subject 6:</label>
+                          <input type="number" id="Subject6" placeholder="Enter Marks" name="Subject6">
+                        </div>
+                        <div>
+                          <label for="MaxMarks">MaxMarks:</label>
+                          <input type="number" id="MaxMarks" placeholder="Enter Max Total Marks" name="MaxMarks">
+                        </div>
+
+
+                        <div>
+                          <input type="submit">
+                        </div>
+                    </form>
+                    <!-- Form -->
+
+
+
+        </div>
+    {% endblock %}

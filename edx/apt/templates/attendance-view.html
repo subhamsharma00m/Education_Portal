@@ -1,0 +1,46 @@
+{% extends 'student-header.html' %}
+{% block content %}
+
+
+
+<h3><br></h3>
+
+
+
+
+
+
+<table id="t01">
+  <tr>
+      <th><h3 id="kk">Username</h3></th>
+      <th><h3 id="kk">Date</h3></th>
+      <th><h3 id="kk">Attend Lecture:</h3></th>
+      <th><h3 id="kk">Total Lecture:</h3></th>
+  </tr>
+    {% for ate1 in atd %}
+  <tr>
+      <td>{{ ate1.username }}</td>
+      <td>{{ ate1.date }}</td>
+      <td>{{ ate1.attend }}</td>
+      <td>{{ ate1.totallecture }}</td>
+
+  </tr>
+    {% endfor %}
+
+</table>
+
+
+
+
+<h2 id="rr">Percentage</h2>
+<h3>
+<ol id="rr">
+
+    {% for vr in bv %}
+    <li>  {{ vr }}%  </li>
+    {% endfor %}
+
+</ol>
+</h3>
+
+{% endblock %}

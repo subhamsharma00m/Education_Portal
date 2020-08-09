@@ -1,0 +1,38 @@
+{% extends 'footer.html' %}
+{% block content %}
+
+<div id="dv">
+<h3 class="dark-grey-text text-center">
+    <strong id="st">Upload Assignment</strong>
+</h3>
+<form method="POST" enctype="multipart/form-data">
+                  <!-- Heading -->
+                    {% csrf_token %}
+
+                    <div>
+                      <label for="Class">Class:</label>
+                      <input type="text" id="Class" name="Class" value="{{ cls }}" required>
+                    </div>
+
+
+                    <div>
+                      <label for="subject">Subject Name:</label>
+                      <input type="text" id="subject" placeholder="Enter Subject Name:" name="subject" required>
+                    </div>
+                    <div>
+                      <label for="topic">Topic Name:</label>
+                      <input type="text" id="topic" placeholder="Enter Topic Name:" name="topic" required>
+                    </div>
+
+                    <div>
+                      <label for="file">File:</label>
+                      <input type="file" accept="application/pdf,application/vnd.ms-excel" id="file" name="file" required>
+                    </div>
+
+                    <div>
+                      <input type="submit">
+                    </div>
+                </form>
+
+</div>
+{% endblock %}

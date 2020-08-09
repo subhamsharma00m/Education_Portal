@@ -1,0 +1,17 @@
+{% extends 'student-header.html' %}
+{% block content %}
+
+<h1 style="color: darkred; margin-left: auto">Assignment</h1>
+
+
+    {% for asd in  fg %}
+        <h3 id="inf">{{ asd.subject }}</h3>
+        <h3 id="inf">{{ asd.topic }}</h3>
+        <button class="btn"><i class="fa fa-download"></i><a href="{{ asd.file.url }}" id="inf">Download</a></button><br><br>
+       <!-- <embed src="{{ asd.file.url }}" type="pdf" width="50%" height="600px" ></embed>-->
+    {% endfor %}
+
+
+{% endblock %}
+
+

@@ -1,0 +1,234 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>StudyInzz - {% block title %}Dashboard{% endblock %}
+    </title>
+    <link rel="icon" type="image/png" href="{% static "home/images/cap.png" %}">
+	<link href="{% static "lumino/css/bootstrap.min.css" %}" rel="stylesheet">
+	<link href="{% static "lumino/css/font-awesome.min.css" %}" rel="stylesheet">
+	<link href="{% static "lumino/css/datepicker3.css" %}" rel="stylesheet">
+	<link href="{% static "lumino/css/styles.css" %}" rel="stylesheet">
+	<link href="{% static "lumino/css/2css.css" %}" rel="stylesheet">
+
+
+    <style>
+        img
+        {
+            border-radius: 50%;
+            border-color: #c80000;
+
+
+        }
+
+        .rotate90{
+            margin-right: 20%;
+        }
+        body {
+            background-color: #006dcc;
+        }
+
+        #pp{
+            margin-left: 10px;
+        }
+
+        #po {
+        color: #020D0E;
+        margin-left: 30px;
+        text-align: left;
+        font-size: 130%;
+        }
+
+        #op {
+        color: #0f0f0f;
+        margin-left: 20px;
+        text-align: end;
+        font-size: 130%;
+        text-decoration-color: #0044cc;
+
+        }
+
+        #bt{
+            background-color: #000000;
+
+            color: #eeeeee;
+            font-size: 20px;
+            padding: 8px 30px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+
+
+
+        }
+        #bt:hover{
+            background-color: #204d74;
+        }
+
+        #gf{
+            font-size: 70px;
+            font-family: "Adobe Arabic", serif;
+            color: #c80000;
+
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+		<div class="container-fluid" >
+			<div class="navbar-header" >
+				<a class="navbar-brand" href="#"><span>Education</span></a>
+
+
+
+			</div>
+		</div>
+	</nav>
+
+    <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar" style="top:40px;">
+		<ul class="nav menu">
+			<li><a href="{% url 'logsuccess' %}"><em class="fa fa-dashboard" >&nbsp;</em> Dashboard</a></li>
+            <li><a href="{% url 'home' %}"><em class="fa fa-dashboard" >&nbsp;</em> Home</a></li>
+			<li><a href="{% url 'exam' %}"><em class="fa fa-calendar">&nbsp;</em> Exam History</a></li>
+            {% block dropdown %}
+                {% for i in s %}
+                    {% with forloop.counter as outer_counter %}
+                            <li class="parent "><a data-toggle="collapse" href="#sub-item-{{ outer_counter }}">
+                                <em class="fa fa-navicon">&nbsp;</em> {{ i.subname }} <span data-toggle="collapse" href="#sub-item-{{ outer_counter }}" class="icon pull-right"><em class="fa fa-plus"></em></span>
+                                </a>
+                                <ul class="children collapse" id="sub-item-{{ outer_counter }}">
+                                {% for j in t %}
+                                    {% if j.subject.subname == i.subname %}
+                                                <li><a class="" href="{% url 'startexam' %}?id={{ forloop.counter }}">
+                                                    {{ j.topicname }}
+                                                    </a>
+                                                </li>
+                                    {% endif %}
+                                {% endfor %}
+                                </ul>
+                            </li>
+                    {% endwith %}
+                {% endfor %}
+            {% endblock %}
+
+            <li><a href="{% url 'exam-results' %}"><em class="fa fa-dashboard" >&nbsp;</em> Exam Result</a></li>
+            <li><a href="{% url 'attendance-view' %}"><em class="fa fa-calendar">&nbsp;</em> Attendance</a></li>
+            <li><a href="{% url 'logsuccess' %}"><em class="fa fa-dashboard" >&nbsp;</em> Time Table</a></li>
+            <li><a href="{% url 'home-work' %}"><em class="fa fa-dashboard" >&nbsp;</em> Assignment</a></li>
+		    <li><a href="{% url 'login' %}?action=logout">Logout</a></li>
+        </ul>
+	</div>
+
+{% block main %}
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header" style="color: #eeeeee">{% block pageheader %}Dashboard{% endblock %}</h1>
+			</div>
+		</div>
+
+		<div class="panel panel-container" >
+            <div class="panel panel-heading"><b>Student Information</b></div>
+            {% for information in data %}
+
+
+                        <img src="{{ information.photo.url }}" width="270" height="270" align="right"  class="rotate90">
+                <table border="0" id="pp" >
+                    <tr>
+                        <th id="po"><b>Student ID:</b> </th>
+                            <td><i id="op">{{ information.user }}</i></td>
+                    </tr>
+                    <tr>
+                        <th id="po"><b>Student Name:</b></th>
+                            <td><i id="op">{{ request.user.first_name }} {{ request.user.last_name }}</i></td>
+                    </tr>
+                    <tr>
+                        <th id="po"><b>Class:</b></th>
+                            <td><i id="op">{{ information.Class }}</i></td>
+                    </tr>
+                    <tr>
+                        <th id="po"><b>DOB:</b></th>
+                            <td><i id="op">{{ information.birth_date }}</i></td>
+                    </tr>
+                    <tr>
+                        <th id="po"><b>Gender:</b></th>
+                            <td><i id="op">{{ information.gender }}</i></td>
+                    </tr>
+                    <tr>
+
+
+                        <th id="po"><b>Father Name:</b></th>
+                            <td><i id="op">{{ information.Father_name }}</i></td>
+                    </tr>
+                    <tr>
+                        <th id="po"><b>Mother Name:</b></th>
+                            <td><i id="op">{{ information.Mother_name }}</i></td>
+                    </tr>
+                    <tr>
+
+                        <th id="po"><b>Mobile Number:</b></th>
+                            <td><i id="op">{{ information.mobile }}</i></td>
+                    </tr>
+                    <tr>
+                        <th id="po"><b>Transport:</b></th>
+                        <td><i id="op">{{ information.Transport }}</i></td>
+                    </tr>
+                     <tr>
+                        <th id="po"><b>Total Fee:</b></th>
+                            <td><i id="op">{{ information.total_fee }}</i></td>
+                    </tr>
+                    <tr>
+                        <th id="po"><b>Deposite:</b></th>
+                            <td><i id="op">{{ information.deposite }}</i></td>
+                    </tr>
+                    <tr>
+                        <th id="po"><b>Remaining:</b></th>
+                            <td><i id="op">{{ remain }}</i></td>
+                    </tr>
+
+
+
+                     <tr>
+                        <th id="po"><b>Email ID:</b></th>
+                            <td><i id="op">{{ request.user.email }}</i></td>
+
+                    </tr>
+                    <tr>
+                        <th id="po"><b>Address:</b></th>
+                            <td><i id="op">{{ information.address }}</i></td>
+                    </tr>
+                </table>
+            {% endfor %}
+
+            <marquee><h3 id="gf"><b> {{ df }}</b></h3></marquee>
+
+		</div>
+
+
+        <h3>
+        </h3>
+
+
+
+	</div>
+{% endblock %}
+
+	<script src="{% static "lumino/js/jquery-1.11.1.min.js" %}"></script>
+	<script src="{% static "lumino/js/bootstrap.min.js" %}"></script>
+	<script src="{% static "lumino/js/chart.min.js" %}"></script>
+	<script src="{% static "lumino/js/easypiechart.js" %}"></script>
+	<script src="{% static "lumino/js/easypiechart-data.js" %}"></script>
+	<script src="{% static "lumino/js/custom.js" %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+{% extends 'footer.html' %}
+{% block content %}
+
+
+<div id="dv">
+<h3 class="dark-grey-text text-center">
+    <strong id="st">Attendance Update</strong>
+</h3>
+<form method="POST">
+                  <!-- Heading -->
+                    {% csrf_token %}
+
+                    <div>
+                      <label for="date">Date:</label>
+                      <input type="date" id="date" name="date" required>
+                    </div>
+
+                    <div>
+                       <label for="username" >Username</label>
+                        <select name="username">
+                            <option selected>Select</option>
+                            {% for up2 in ex2 %}
+                            <option value="{{ up2.user }}">{{ up2.user }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                      <label for="attend">Attend Lecture:</label>
+                      <input type="number" id="attend" placeholder="Enter Attend Lecture" name="attend" required>
+                    </div>
+                    <div>
+                      <label for="totallecture">Total Lecture:</label>
+                      <input type="number" id="totallecture" placeholder="Enter Total Lecture" name="totallecture" required>
+                    </div>
+
+
+                    <div>
+                      <input type="submit">
+                    </div>
+                </form>
+
+</div>
+{% endblock %}

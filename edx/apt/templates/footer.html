@@ -1,0 +1,247 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>fsociety</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="{% static "index/img/favicon.png" %}" rel="icon">
+  <link href="{% static "index/img/apple-touch-icon.png" %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="{% static "index/css/css1.css" %}" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="{% static "index/lib/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="{% static "index/lib/font-awesome/css/font-awesome.min.css" %}" rel="stylesheet">
+  <link href="{% static "index/lib/animate/animate.min.css" %}" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="{% static "index/css/style.css" %}" rel="stylesheet">
+
+
+  <!-- update exam -->
+    <link rel="icon" type="image/png" href="{% static "home/images/cap.png" %}">
+	<link href="{% static "lumino/css/bootstrap.min.css" %}" rel="stylesheet">
+	<link href="{% static "lumino/css/font-awesome.min.css" %}" rel="stylesheet">
+	<link href="{% static "lumino/css/datepicker3.css" %}" rel="stylesheet">
+	<link href="{% static "lumino/css/styles.css" %}" rel="stylesheet">
+	<link href="{% static "lumino/css/2css.css" %}" rel="stylesheet">
+
+
+    <style>
+
+
+
+        .rotate90{
+            margin-left: 10px;
+        }
+        body {
+            background-color: #000000;
+        }
+
+        #po {
+        color: #020D0E;
+        margin-left: 10px;
+        font-size: 200%;
+        }
+
+        #op {
+        color: #400934;
+        margin-left: 20px;
+        font-size: 100%;
+        }
+
+
+        input[type=text], select {
+          width: 30%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          box-sizing: border-box;
+          margin-right: 80%;
+        }
+
+        input[type=number], select {
+          width: 20%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          box-sizing: border-box;
+          margin-right: 80%;
+        }
+
+
+        input[type=date], select {
+            width: 20%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-right: 80%;
+        }
+
+        input[type=submit] {
+          width: 20%;
+          font-size: 18px;
+          background-color: #4CAF50;
+          color: white;
+          padding: 14px 20px;
+          margin: 15px 35%;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+          background-color: #45a049;
+        }
+
+        #dv{
+          border-radius: 5px;
+          background-color: #f2f2f2;
+          padding: 20px;
+        }
+
+        label{
+            font-size: 18px;
+        }
+
+        strong{
+            font-size: 30px;
+            font-family: "Open Sans", Arial, Helvetica, sans-serif;
+
+        }
+
+        #bt{
+            background-color: #000000;
+
+            color: #eeeeee;
+            font-size: 20px;
+            padding: 8px 30px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+
+
+
+        }
+        #bt:hover{
+            background-color: #204d74;
+        }
+
+        #rr{
+            color: white;
+        }
+
+    </style>
+
+
+</head>
+
+
+
+<body>
+<header id="header">
+    <div class="container">
+
+      <div id="logo" class="pull-left">
+<!--
+        <a href="#hero"><img src="{% static "index/img/logo1.png" %}" alt="" title="" /></a>
+        <!-- Uncomment below if you prefer to use a text logo -->
+        <!--<h1><a href="#hero">Regna</a></h1>-->
+
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'written_exam' %}">Update Result</a> </li>
+          <li><a href="{% url 'attendance_update' %}">Update Attendance</a> </li>
+          <li><a href="{% url "Assignment" %}">Upload Assignment</a> </li>
+          <li>
+              {% if user.is_authenticated %}
+                  <p id="rr"> Hi {{ user.username }}</p>
+                  </li>
+                  <li><a href="{% url 'login' %}?action=logout">Logout</a></li>
+
+                            {% else %}
+                                <p>You are not logged in</p>
+                                <a href="{% url 'login' %}">login</a>
+                            {% endif %}
+
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header><!-- #header -->
+  <!--==========================
+  Header
+  ============================-->
+  {% block content %}
+  {% endblock %}
+  <!--==========================
+    Hero Section
+  ============================-->
+
+
+  <!--==========================
+    Footer
+  ============================-->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        ©copyright
+      </div>
+      <div class="credits">
+        <!--
+          All the links in the footer should remain intact.
+          You can delete the links only if you purchased the pro version.
+          Licensing information: https://bootstrapmade.com/license/
+          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Regna
+        -->
+        Designed by subham sharma
+      </div>
+    </div>
+  </footer><!-- #footer -->
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+  <!-- JavaScript Libraries -->
+  <script src="{% static "index/lib/jquery/jquery.min.js" %}"></script>
+  <script src="{% static "index/lib/jquery/jquery-migrate.min.js" %}"></script>
+  <script src="{% static "index/lib/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+  <script src="{% static "index/lib/easing/easing.min.js" %}"></script>
+  <script src="{% static "index/lib/wow/wow.min.js" %}"></script>
+  <script src="{% static "index/lib/waypoints/waypoints.min.js" %}"></script>
+  <script src="{% static "index/lib/counterup/counterup.min.js" %}"></script>
+  <script src="{% static "index/lib/superfish/hoverIntent.js" %}"></script>
+  <script src="{% static "index/lib/superfish/superfish.min.js" %}"></script>
+
+  <!-- Contact Form JavaScript File -->
+  <script src="{% static "index/contactform/contactform.js" %}"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="{% static "index/js/main.js" %}"></script>
+
+</body>
+</html>

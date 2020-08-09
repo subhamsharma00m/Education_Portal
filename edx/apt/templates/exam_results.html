@@ -1,0 +1,59 @@
+{% extends 'student-header.html' %}
+{% block content %}
+
+<h3>
+<br>
+</h3>
+
+
+
+
+
+<table id="t01">
+  <tr>
+      <th><h2 id="kk">Username</h2></th>
+      <th><h2 id="kk">Exam Name</h2></th>
+      <th><h2 id="kk">Subject 1:</h2></th>
+      <th><h2 id="kk">Subject 2:</h2></th>
+      <th><h2 id="kk">Subject 3:</h2></th>
+      <th><h2 id="kk">Subject 4:</h2></th>
+      <th><h2 id="kk">Subject 5:</h2></th>
+      <th><h2 id="kk">Subject 6:</h2></th>
+      <th><h2 id="kk">Maximum Marks:</h2></th>
+  </tr>
+    {% for num in res %}
+    <tr>
+        <td>{{ num.username }}</td>
+        <td>{{ num.Exam_Name }}</td>
+        <td>{{ num.Subject1 }}</td>
+        <td>{{ num.Subject2 }}</td>
+        <td>{{ num.Subject3 }}</td>
+        <td>{{ num.Subject4 }}</td>
+        <td>{{ num.Subject5 }}</td>
+        <td>{{ num.Subject6 }}</td>
+        <td>{{ num.MaxMarks }}</td>
+
+
+    </tr>
+    {% endfor %}
+</table>
+<div class="row">
+    <div class="column" id="ppk">
+    <h2 style="margin-left: 25px">Exam Total Numbers in Order</h2>
+    <ol>{% for xv in vc %}
+        <li><h3 style="margin-left: 25px">{{ xv }}</h3></li>
+
+    {% endfor %}
+    </ol>
+    </div>
+
+    <div class="column" id="ppl">
+        <h2 style="margin-left: 10px">Exam Percentage in Order</h2>
+    <ol>{% for vg in vx %}
+        <li><h3 style="margin-left: 10px">{{ vg }}%</h3></li>
+    {% endfor %}
+    </ol>
+    </div>
+</div>
+{% endblock %}
+

@@ -1,4 +1,4 @@
-# School_Portal
+# Education_Portal
 To run this project go to project directory and run command
 "python manage.py runserver"
 To create admin user
